@@ -1,0 +1,251 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "MPDR"
+paths:
+  /users:
+    get:
+      summary: "List All users"
+      description: "Gets a list of all `user` entities."
+      operationId: "getusers"
+      parameters: []
+      responses:
+        200:
+          description: "Successful response - returns an array of `user` entities."
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/user"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+    post:
+      summary: "Create a user"
+      description: "Creates a new instance of a `user`."
+      operationId: "createuser"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "A new `user` to be created."
+        required: true
+        schema:
+          $ref: "#/definitions/user"
+      responses:
+        201:
+          description: "Successful response."
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /users/{userId}:
+    get:
+      summary: "Get a user"
+      description: "Gets the details of a single instance of a `user`."
+      operationId: "getuser"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "A unique identifier for a `user`."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful response - returns a single `user`."
+          schema:
+            $ref: "#/definitions/user"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+    put:
+      summary: "Update a user"
+      description: "Updates an existing `user`."
+      operationId: "updateuser"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "A unique identifier for a `user`."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated `user` information."
+        required: true
+        schema:
+          $ref: "#/definitions/user"
+      responses:
+        202:
+          description: "Successful response."
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+    delete:
+      summary: "Delete a user"
+      description: "Deletes an existing `user`."
+      operationId: "deleteuser"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "A unique identifier for a `user`."
+        required: true
+        type: "string"
+      responses:
+        204:
+          description: "Successful response."
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /objects:
+    get:
+      summary: "List All objects"
+      description: "Gets a list of all `objects` entities."
+      operationId: "getobjects"
+      parameters: []
+      responses:
+        200:
+          description: "Successful response - returns an array of `objects` entities."
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/objects"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+    post:
+      summary: "Create a objects"
+      description: "Creates a new instance of a `objects`."
+      operationId: "createobjects"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "A new `objects` to be created."
+        required: true
+        schema:
+          $ref: "#/definitions/objects"
+      responses:
+        201:
+          description: "Successful response."
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /objects/{objectsId}:
+    get:
+      summary: "Get a objects"
+      description: "Gets the details of a single instance of a `objects`."
+      operationId: "getobject"
+      parameters:
+      - name: "objectsId"
+        in: "path"
+        description: "A unique identifier for a `objects`."
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Successful response - returns a single `objects`."
+          schema:
+            $ref: "#/definitions/objects"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+    put:
+      summary: "Update a objects"
+      description: "Updates an existing `objects`."
+      operationId: "updateobjects"
+      parameters:
+      - name: "objectsId"
+        in: "path"
+        description: "A unique identifier for a `objects`."
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated `objects` information."
+        required: true
+        schema:
+          $ref: "#/definitions/objects"
+      responses:
+        202:
+          description: "Successful response."
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+    delete:
+      summary: "Delete a objects"
+      description: "Deletes an existing `objects`."
+      operationId: "deleteobjects"
+      parameters:
+      - name: "objectsId"
+        in: "path"
+        description: "A unique identifier for a `objects`."
+        required: true
+        type: "string"
+      responses:
+        204:
+          description: "Successful response."
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+definitions:
+  user:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      health:
+        type: "string"
+      lat:
+        type: "number"
+        format: "double"
+      long:
+        type: "number"
+        format: "double"
+      role:
+        type: "string"
+      deviceId:
+        type: "string"
+      lastOnline:
+        type: "string"
+      userId:
+        type: "integer"
+        format: "int32"
+        description: ""
+    title: "Root Type for user"
+    description: ""
+    example:
+      name: ""
+      health: ""
+      lat: 0
+      long: 0
+      role: ""
+      deviceId: ""
+      lastOnline: ""
+  objects:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      lat:
+        type: "number"
+        format: "double"
+      long:
+        type: "number"
+        format: "double"
+      startLat:
+        type: "number"
+        format: "double"
+      startLong:
+        type: "number"
+        format: "double"
+      endLat:
+        type: "number"
+        format: "double"
+      endLong:
+        type: "number"
+        format: "double"
+      hp:
+        type: "boolean"
+      dmg:
+        type: "boolean"
+      radius:
+        type: "number"
+        format: "double"
+      speed:
+        type: "number"
+        format: "double"
+      objectId:
+        type: "integer"
+        format: "int32"
+    title: "Root Type for objects"
+    description: ""
+    example:
+      name: ""
+      lat: 1.2323232432432432
+      long: 3324.312321321
+      startLat: 1.2323232432432432
+      startLong: 3324.312321321
+      endLat: 1.2323232432432432
+      endLong: 3324.312321321
+      hp: false
+      dmg: true
+      radius: 4.523432
+      speed: 213.32432432
+      objectId: 8972398473294

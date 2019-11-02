@@ -1,0 +1,7 @@
+used https://studio.apicur.io/apis/18105/editor to design the rest endpoints (mostly just let it generate them
+
+copy yaml into editor.swagger.io/#/ to generate server code automatically
+
+to run
+python3 -m swagger_server
+

@@ -1,0 +1,217 @@
+---
+swagger: "2.0"
+info:
+  title: MPDR
+  version: 1.0.0
+paths:
+  /users:
+    get:
+      responses:
+        "200":
+          description: Successful response - returns an array of `user` entities.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/user'
+      operationId: getusers
+      summary: List All users
+      description: Gets a list of all `user` entities.
+    post:
+      parameters:
+      - name: body
+        description: A new `user` to be created.
+        schema:
+          $ref: '#/definitions/user'
+        in: body
+        required: true
+      responses:
+        "201":
+          description: Successful response.
+      operationId: createuser
+      summary: Create a user
+      description: Creates a new instance of a `user`.
+  /users/{userId}:
+    get:
+      responses:
+        "200":
+          description: Successful response - returns a single `user`.
+          schema:
+            $ref: '#/definitions/user'
+      operationId: getuser
+      summary: Get a user
+      description: Gets the details of a single instance of a `user`.
+    put:
+      parameters:
+      - name: body
+        description: Updated `user` information.
+        schema:
+          $ref: '#/definitions/user'
+        in: body
+        required: true
+      responses:
+        "202":
+          description: Successful response.
+      operationId: updateuser
+      summary: Update a user
+      description: Updates an existing `user`.
+    delete:
+      responses:
+        "204":
+          description: Successful response.
+      operationId: deleteuser
+      summary: Delete a user
+      description: Deletes an existing `user`.
+    parameters:
+    - name: userId
+      description: A unique identifier for a `user`.
+      in: path
+      required: true
+      type: string
+  /objects:
+    get:
+      responses:
+        "200":
+          description: Successful response - returns an array of `objects` entities.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/objects'
+      operationId: getobjects
+      summary: List All objects
+      description: Gets a list of all `objects` entities.
+    post:
+      parameters:
+      - name: body
+        description: A new `objects` to be created.
+        schema:
+          $ref: '#/definitions/objects'
+        in: body
+        required: true
+      responses:
+        "201":
+          description: Successful response.
+      operationId: createobjects
+      summary: Create a objects
+      description: Creates a new instance of a `objects`.
+  /objects/{objectsId}:
+    get:
+      responses:
+        "200":
+          description: Successful response - returns a single `objects`.
+          schema:
+            $ref: '#/definitions/objects'
+      operationId: getobject
+      summary: Get a objects
+      description: Gets the details of a single instance of a `objects`.
+    put:
+      parameters:
+      - name: body
+        description: Updated `objects` information.
+        schema:
+          $ref: '#/definitions/objects'
+        in: body
+        required: true
+      responses:
+        "202":
+          description: Successful response.
+      operationId: updateobjects
+      summary: Update a objects
+      description: Updates an existing `objects`.
+    delete:
+      responses:
+        "204":
+          description: Successful response.
+      operationId: deleteobjects
+      summary: Delete a objects
+      description: Deletes an existing `objects`.
+    parameters:
+    - name: objectsId
+      description: A unique identifier for a `objects`.
+      in: path
+      required: true
+      type: string
+definitions:
+  user:
+    title: Root Type for user
+    description: ""
+    type: object
+    properties:
+      name:
+        type: string
+      health:
+        type: string
+      lat:
+        format: double
+        type: number
+      long:
+        format: double
+        type: number
+      role:
+        type: string
+      deviceId:
+        type: string
+      lastOnline:
+        type: string
+      userId:
+        format: int32
+        description: ""
+        type: integer
+    example:
+      name: ""
+      health: ""
+      lat: 0
+      long: 0
+      role: ""
+      deviceId: ""
+      lastOnline: ""
+  objects:
+    title: Root Type for objects
+    description: ""
+    type: object
+    properties:
+      name:
+        type: string
+      lat:
+        format: double
+        type: number
+      long:
+        format: double
+        type: number
+      startLat:
+        format: double
+        type: number
+      startLong:
+        format: double
+        type: number
+      endLat:
+        format: double
+        type: number
+      endLong:
+        format: double
+        type: number
+      hp:
+        type: boolean
+      dmg:
+        type: boolean
+      radius:
+        format: double
+        type: number
+      speed:
+        format: double
+        type: number
+      objectId:
+        format: int32
+        type: integer
+    example:
+      name: ""
+      lat: 1.2323232432432432
+      long: 3324.312321321
+      startLat: 1.2323232432432432
+      startLong: 3324.312321321
+      endLat: 1.2323232432432432
+      endLong: 3324.312321321
+      hp: false
+      dmg: true
+      radius: 4.523432
+      speed: 213.32432432
+      objectId: 8972398473294
